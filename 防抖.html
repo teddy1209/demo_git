@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>test</title>
+	<style>
+		.leftBox{
+      width: 100px;
+      height: 100px;
+      background-color: darkred;
+      float: left;
+    }
+    .rightBox{
+      width: 100px;
+      height: 100px;
+      background-color: darkgreen;
+      float: left;
+      display: none;
+    }
+	</style>
+</head>
+<body>
+  <div class="leftBox"></div>
+  <div class="rightBox"></div>
+  <div contenteditable="true">
+    This text can be edited by the user.
+  </div>
+  <script>
+    var a = document.getElementsByClassName('leftBox')[0];
+    var b = document.getElementsByClassName('rightBox')[0];
+    const debounce = (fn, wait = 300) => {
+        let timer, result
+        return function(...args) {
+            timer && clearTimeout(timer)
+            timer = setTimeout(fn, wait)
+        }
+    }
+    a.addEventListener("mouseover", debounce(()=>{b.style.display = "block"},1000));
+    a.addEventListener("mouseout", debounce(()=>{b.style.display = "none"},1000));
+  </script>
+</body>
+</html>
